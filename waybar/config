@@ -1,0 +1,60 @@
+{
+	"layer": "top",
+	"modules-left": ["custom/launcher", "wlr/workspaces", "hyprland/window"],
+	"modules-center": ["clock"],
+	"modules-right": ["cpu", "memory", "custom/updates", "pulseaudio"],
+	
+    "custom/launcher":{
+        "format": " ",
+        "on-click": "rofi -show drun",
+        "on-click-right": "killall rofi"
+    },
+    "hyprland/window": {
+        "format": "{}",
+        "separate-outputs": false
+    },
+    "wlr/workspaces": {
+        "format": "{icon}",
+        "on-click": "activate",
+        "all-outputs": true,
+        "format-icons": {
+          "1": "1",
+          "2": "2",
+          "3": "3",
+          "4": "4",
+          "5": "5"
+        },
+        "sort-by-number": true
+      },
+    "clock": {
+        "format": "{: %e %b %Y -  %H:%M}"
+    },
+    "cpu": {
+        "interval": 15,
+        "format": "󰘚 CPU: {}%",
+        "max-length": 12
+    },
+    "memory": {
+        "interval": 30,
+        "format": "Memory: {}%",
+        "max-length": 12
+    },
+    "pulseaudio": {
+		"tooltip": false,
+		"scroll-step": 5,
+		"format": "{icon} {volume}%",
+		"format-muted": "󰖁 {volume}%",
+		"on-click":"pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "on-click-right":"pavucontrol",
+		"format-icons": {
+			"default": ["", "", ""]
+		}
+	},
+    "custom/updates":{
+        "format": "{} Update(s)",
+        "exec": "checkupdates | wc -l",
+        "exec-if": "[[ $(checkupdates | wc -l) != 0 ]]",
+        "interval": 15,
+        "on-click": "alacritty -e paru -Syu && notify-send 'The system has been updated' "
+    }
+}
