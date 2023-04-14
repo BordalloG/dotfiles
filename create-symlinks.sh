@@ -21,3 +21,4 @@ create_dirs waybar/style.css
 create_dirs hypr/hyprland.conf
 create_dirs hypr/hyprpaper.conf
 
+create_dirs alacritty/alacritty.yml
