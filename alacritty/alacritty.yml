@@ -8,6 +8,12 @@ window:
     x: 15
     y: 15
 
+scrolling:
+  history: 5000 
+  multiplier: 3
+  full_screen_scroll: true
+  minimum_length_to_scroll: 8
+
 mouse_bindings:
   - { mouse: Right, mods: None, action: Paste }
 
