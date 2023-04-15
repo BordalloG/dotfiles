@@ -1,14 +1,17 @@
 # Default OMZ theme for Archcraft
+purple=bd93f9
 
-if [[ "$USER" == "root" ]]; then
-  PROMPT="%(?:%{$fg_bold[red]%}%{$fg_bold[yellow]%}%{$fg_bold[red]%} :%{$fg_bold[red]%} )"
-  PROMPT+='%{$fg[cyan]%}  %c%{$reset_color%} $(git_prompt_info)'
-else
-  PROMPT="%(?:%{$fg_bold[red]%}%{$fg_bold[green]%}%{$fg_bold[yellow]%} :%{$fg_bold[red]%} )"
-  PROMPT+='%{$fg[cyan]%}  %c%{$reset_color%} $(git_prompt_info)'
-fi
 
-ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}  git:(%{$fg[red]%}"
-ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "
-ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%}) %{$fg[yellow]%}✗"
-ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%})"
+PROMPT=""
+PROMPT+="%B%F{#E8A2AF}"
+PROMPT+="%B%F{#bd93f9}"
+PROMPT+="%B%F{#E8A2AF}"
+
+
+PROMPT+='%B%F{#bd93f9}  $fg_bold[white]%c%{$reset_color%} $(git_prompt_info)%B󰁔 '
+
+
+ZSH_THEME_GIT_PROMPT_PREFIX=" " 
+
+ZSH_THEME_GIT_PROMPT_PREFIX="%B%F{#bd93f9} [%{$fg[white]%}"
+ZSH_THEME_GIT_PROMPT_SUFFIX="%B%F{#bd93f9}]%{$reset_color%} "
