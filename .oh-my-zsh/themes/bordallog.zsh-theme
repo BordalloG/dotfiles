@@ -1,7 +1,3 @@
-# Default OMZ theme for Archcraft
-purple=bd93f9
-
-
 PROMPT=""
 PROMPT+="%B%F{#E8A2AF}"
 PROMPT+="%B%F{#bd93f9}"
