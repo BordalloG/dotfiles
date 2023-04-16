@@ -8,7 +8,7 @@ PROMPT+="%B%F{#bd93f9}"
 PROMPT+="%B%F{#E8A2AF}"
 
 
-PROMPT+='%B%F{#bd93f9}  $fg_bold[white]%c%{$reset_color%} $(git_prompt_info)%B󰁔 '
+PROMPT+='%B%F{#bd93f9}  $fg_bold[white]%c%{$reset_color%} $(git_prompt_info)%B󰁔 %{$reset_color%}'
 
 
 ZSH_THEME_GIT_PROMPT_PREFIX=" " 
