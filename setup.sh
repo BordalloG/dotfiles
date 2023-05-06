@@ -1,5 +1,6 @@
 source .setup/pacman.sh
 source .setup/symlinks.sh
+source .setup/helper.sh
 
 #check if this file is in $HOME/dotfiles    
 if [[ ! $(pwd) == "$HOME/dotfiles" ]]; then
@@ -12,6 +13,7 @@ update
 install ${packages[@]}
 install_yay 
 install_from_aur${aur_packages[@]}
+install_oh_my_zsh
 
 echo "creating symlinks"
 create_symlink $CONFIG alacritty/alacritty.yml

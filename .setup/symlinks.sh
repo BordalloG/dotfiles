@@ -5,20 +5,19 @@ function create_symlink {
   dest_path=$1
   file_path=$(dirname "$2")
   file_name=$(basename "$2")
-
-  #check if folder structure exists
-  if [ ! -e "$file_path" ]; then
-    echo "Destination does not exist: $file_path"
-    echo "Creating ..."
-    mkdir -p $(dirname "$file_path")
-  fi
+  dest=$dest_path/$file_path
 
   if [ $file_path == "." ]; then
-    symlink $DOTFILES/$2 $dest_path/$file_name
-    return
+    dest=$dest_path
   fi
 
-  symlink $DOTFILES/$2 $dest_path/$file_path/$file_name
+  if [ ! -e "$dest" ]; then
+    echo "Destination does not exist: $dest"
+    echo "Creating ..."
+    mkdir -p $dest
+  fi
+
+  symlink $DOTFILES/$2 $dest/$file_name
 }
 
 function symlink {
@@ -29,6 +28,6 @@ function symlink {
     rm -f ~/$dest
   fi
 
-  echo "[symlink - $(basename "$src") ] src:$(dirname "$src") <- dest:$(dirname "$dest")"
+  echo "[symlink - $(basename "$src")] [src: $src] <- [dest: $dest)]"
   ln -sf $src $dest
 }

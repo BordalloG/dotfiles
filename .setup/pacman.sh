@@ -7,6 +7,10 @@ function install {
 }
 
 function install_yay {
+  if yay --version &> /dev/null; then
+    return
+  fi
+
   git clone https://aur.archlinux.org/yay.git
   cd yay
   makepkg -si --noconfirm
