@@ -1,13 +1,9 @@
-PROMPT=""
-PROMPT+="%B%F{#E8A2AF}"
-PROMPT+="%B%F{#bd93f9}"
-PROMPT+="%B%F{#E8A2AF}"
+LIGHTARROW="%B%F{#E8A2AF}"
+DARKARROW="%B%F{#bd93f9}"
+FOLDER="%F{#bd93f9} [%{$fg[white]%}%c% %F{#bd93f9}]"
 
+PROMPT="$LIGHTARROW$DARKARROW$LIGHTARROW $FOLDER"
+PROMPT+='$(git_prompt_info)%B 󰁔 %{$reset_color%}'
 
-PROMPT+='%B%F{#bd93f9}  $fg_bold[white]%c%{$reset_color%} $(git_prompt_info)%B󰁔 %{$reset_color%}'
-
-
-ZSH_THEME_GIT_PROMPT_PREFIX=" " 
-
-ZSH_THEME_GIT_PROMPT_PREFIX="%B%F{#bd93f9} [%{$fg[white]%}"
-ZSH_THEME_GIT_PROMPT_SUFFIX="%B%F{#bd93f9}]%{$reset_color%} "
+ZSH_THEME_GIT_PROMPT_PREFIX=" %B%F{#bd93f9} [%{$fg[white]%}"
+ZSH_THEME_GIT_PROMPT_SUFFIX="%B%F{#bd93f9}]%{$reset_color%}"
