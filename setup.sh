@@ -1,21 +1,22 @@
-source .setup/pacman.sh
-source .setup/symlinks.sh
+# source .setup/pacman.sh
+# source .setup/symlinks.sh
 source .setup/helper.sh
 
-#check if this file is in $HOME/dotfiles    
-if [[ ! $(pwd) == "$HOME/dotfiles" ]]; then
-    echo "Please move the dotfiles folder to $HOME/dotfiles"
-    exit 1
+# goes over all folders and calle install.sh when present
+function install_all {
+    for folder in $(ls -da */); do         
+        if [[ -f "$folder/install.sh" ]]; then
+            prompt_install $folder "$folder/install.sh"                                
+        fi
+    done
+    printf "Done ... Press any key to exit \n"
+    read -r answer
+    clear
+}
+
+install_yay
+resp=$?
+if [[ $resp -eq 0 ]]; then # only proceed if yay was installed, it is required to install some packages
+    clear
+    install_all
 fi
-
-echo "installing packages"
-update
-install ${packages[@]}
-install_yay 
-install_from_aur${aur_packages[@]}
-install_oh_my_zsh
-
-echo "creating symlinks"
-create_symlink $CONFIG alacritty/alacritty.yml
-create_symlink $HOME .zshrc
-create_symlink $HOME .oh-my-zsh/themes/bordallog.zsh-theme

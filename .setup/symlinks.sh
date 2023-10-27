@@ -1,23 +1,21 @@
+source .setup/helper.sh
+
 CONFIG=$HOME/.config
 DOTFILES=$HOME/dotfiles
 
 function create_symlink {
-  dest_path=$1
-  file_path=$(dirname "$2")
-  file_name=$(basename "$2")
-  dest=$dest_path/$file_path
+  src=$1
+  dest=$2
 
-  if [ $file_path == "." ]; then
-    dest=$dest_path
+  dest_path=$(dirname "$2")
+  
+  if [ ! -e "$dest_path" ]; then
+    echo "Destination folder ${POWDER_BLUE}$dest ${NORMAL}does not exist: ... ${BLINK} Creating ${NORMAL}..."
+    mkdir -p $dest_path
   fi
 
-  if [ ! -e "$dest" ]; then
-    echo "Destination does not exist: $dest"
-    echo "Creating ..."
-    mkdir -p $dest
-  fi
-
-  symlink $DOTFILES/$2 $dest/$file_name
+  symlink $src $dest
+  check_symlink $dest
 }
 
 function symlink {
@@ -25,9 +23,22 @@ function symlink {
   dest=$2
 
   if [ -e "$dest" ]; then
+    echo "File ${POWDER_BLUE}$dest ${NORMAL}already exists: ... ${BLINK} Removing ${NORMAL}..."
     rm -f ~/$dest
   fi
 
-  echo "[symlink - $(basename "$src")] [src: $src] <- [dest: $dest)]"
+  printf "Creating a symlink for $(basename "$src")
+    ${POWDER_BLUE}src:${NORMAL} $src
+    ${POWDER_BLUE}dest:${NORMAL} $dest \n"
   ln -sf $src $dest
+}
+
+function check_symlink {
+  dest=$1
+
+  if [ -e "$dest" ]; then
+    printf "Symlink${GREEN} successfully${NORMAL} created \n"
+  else
+    printf "Symlink${RED} failed${NORMAL} to create \n"
+  fi
 }
